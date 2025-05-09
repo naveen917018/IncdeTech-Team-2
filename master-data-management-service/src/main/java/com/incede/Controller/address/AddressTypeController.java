@@ -14,14 +14,14 @@ import com.incede.Service.address.AddressTypeService;
 @CrossOrigin(origins = "http://localhost:5173")
 public class AddressTypeController {
 
-	private final AddressTypeService addressTypeService;
-
+private final AddressTypeService addressTypeService;
+  
 	public AddressTypeController(AddressTypeService addressTypeService) {
 		this.addressTypeService = addressTypeService;
 	}
 
 	// Get all address types
-	@GetMapping("/getAll")
+	@GetMapping("/getAll-")
 	public ResponseEntity<List<AddressTypeDto>> getAllAddressTypes() {
 		List<AddressTypeDto> addressTypes = addressTypeService.getAllAddressTypes();
 		return ResponseEntity.ok(addressTypes);
