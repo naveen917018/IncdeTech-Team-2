@@ -88,11 +88,12 @@ public class CustomerStatusService {
 				throw new BusinessException("Status name already exists for this tenant.");
 			}
 		}
-
+        
 		existing.setStatusName(dto.getStatusName());
 		existing.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
 		existing.setUpdatedBy(dto.getUpdatedBy());
 		existing.setUpdatedAt(LocalDateTime.now());
+		
 
 		return customerStatusRepository.save(existing); // this will update the row
 	}

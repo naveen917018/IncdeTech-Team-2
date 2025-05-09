@@ -22,6 +22,7 @@ public class RelationshipService {
 
     private RelationshipDto toDto(Relationship entity) {
         RelationshipDto dto = new RelationshipDto();
+        dto.setRelationshipId(entity.getRelationshipId());
         dto.setTenantId(entity.getTenantId());
         dto.setRelationship(entity.getRelationship());
         dto.setIsActive(entity.getIsActive());

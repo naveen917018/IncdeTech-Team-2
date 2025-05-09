@@ -11,6 +11,7 @@ import com.incede.Service.address.AddressTypeService;
 
 @RestController
 @RequestMapping("/v1/masterdata/address/address-types")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AddressTypeController {
 
 	private final AddressTypeService addressTypeService;

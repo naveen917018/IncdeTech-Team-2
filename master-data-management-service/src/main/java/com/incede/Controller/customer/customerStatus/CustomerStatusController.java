@@ -3,11 +3,19 @@ package com.incede.Controller.customer.customerStatus;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.incede.Dto.customer.customerStatus.CustomerStatusDto;
 import com.incede.Model.customer.customerStatus.CustomerStatus;
 import com.incede.Service.customer.customerStatus.CustomerStatusService;
+import com.incede.payload.CommonResult;
 
 @RestController
 @RequestMapping("/v1/masterdata/customers/customer-statuses")
@@ -19,12 +27,12 @@ public class CustomerStatusController {
 		this.customerStatusService = customerStatusService;
 	}
 
-	// Get all customer statuses that are not deleted
 	@GetMapping("/getAll")
-	public ResponseEntity<List<CustomerStatusDto>> getAllCustomerStatuses() {
-		List<CustomerStatusDto> statuses = customerStatusService.getAllCustomerStatuses();
-		return ResponseEntity.ok(statuses);
+	public CommonResult<List<CustomerStatusDto>> getAllCustomerStatuses() {
+	    List<CustomerStatusDto> statuses = customerStatusService.getAllCustomerStatuses();
+	    return CommonResult.success(statuses, "Fetched all customer statuses successfully");
 	}
+
 
 	// Get a customer status by ID
 	@GetMapping("/{statusId}")

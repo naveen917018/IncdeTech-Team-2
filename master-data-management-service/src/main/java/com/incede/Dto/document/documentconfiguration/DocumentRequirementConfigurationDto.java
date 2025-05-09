@@ -10,7 +10,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocumentRequirementConfigurationDto {
-
+    
+	private Integer documentId;
     private Integer tenantId;
     private Integer productId;
     private String documentType;
