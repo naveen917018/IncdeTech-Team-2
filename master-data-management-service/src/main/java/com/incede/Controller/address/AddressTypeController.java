@@ -13,14 +13,14 @@ import com.incede.Service.address.AddressTypeService;
 @RequestMapping("/v1/masterdata/address/address-types")
 public class AddressTypeController {
 
-	private final AddressTypeService addressTypeService;
-
+private final AddressTypeService addressTypeService;
+  
 	public AddressTypeController(AddressTypeService addressTypeService) {
 		this.addressTypeService = addressTypeService;
 	}
 
 	// Get all address types
-	@GetMapping("/getAll")
+	@GetMapping("/getAll-")
 	public ResponseEntity<List<AddressTypeDto>> getAllAddressTypes() {
 		List<AddressTypeDto> addressTypes = addressTypeService.getAllAddressTypes();
 		return ResponseEntity.ok(addressTypes);
