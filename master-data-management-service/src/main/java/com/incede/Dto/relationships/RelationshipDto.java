@@ -15,4 +15,5 @@ public class RelationshipDto {
     private Integer createdBy;
     private Integer updatedBy;
     private Boolean isDeleted;
+    private Integer relationshipId;
 }

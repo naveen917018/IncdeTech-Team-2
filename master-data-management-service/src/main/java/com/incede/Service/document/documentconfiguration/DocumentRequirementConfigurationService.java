@@ -24,6 +24,7 @@ public class DocumentRequirementConfigurationService {
     private DocumentRequirementConfigurationDto toDto(DocumentRequirementConfiguration entity) {
         DocumentRequirementConfigurationDto dto = new DocumentRequirementConfigurationDto();
         dto.setTenantId(entity.getTenantId());
+        dto.setDocumentId(entity.getDocumentId());
         dto.setProductId(entity.getProductId());
         dto.setDocumentType(entity.getDocumentType());
         dto.setDocumentCategory(entity.getDocumentCategory());
