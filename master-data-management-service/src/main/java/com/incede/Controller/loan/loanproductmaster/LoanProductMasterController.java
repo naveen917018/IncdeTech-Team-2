@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incede.Dto.loan.loanproductmaster.LoanProductMasterDto;
-<<<<<<< HEAD
-=======
+
 import com.incede.Service.loan.loanpurposemaster.LoanPurposeMasterService;
->>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 import com.incede.Service.loan.loanproductmaster.LoanProductMasterService;
 
 @RestController
