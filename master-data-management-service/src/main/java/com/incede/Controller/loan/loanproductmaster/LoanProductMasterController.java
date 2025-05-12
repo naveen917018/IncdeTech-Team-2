@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.caratmaster.CaratMasterDTO;
 import com.incede.Dto.loan.loanproductmaster.LoanProductMasterDto;
 import com.incede.Service.loan.loanpurposemaster.LoanPurposeMasterService;
-import com.incede.Service.loanproductmaster.LoanProductMasterService;
+import com.incede.Service.loan.loanproductmaster.LoanProductMasterService;
 
 @RestController
 @RequestMapping("/v1/masterdata/loan/product")
@@ -52,7 +52,7 @@ public class LoanProductMasterController {
 	
 	@GetMapping("/{productId}")
 	public ResponseEntity<Map<String, Object>> getByLoanProductMasterId(@PathVariable Integer productId){
-		List<LoanProductMasterDto> dto = loanProductMasterServices.getByLoanProductMasterId(productId);
+		LoanProductMasterDto dto = loanProductMasterServices.getByLoanProductMasterId(productId);
 		Map<String, Object> responce = new HashMap<>();
 		responce.put("Status","Success");
 		responce.put("data",dto );

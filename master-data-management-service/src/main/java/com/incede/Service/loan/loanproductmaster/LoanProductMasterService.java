@@ -86,12 +86,11 @@ public class LoanProductMasterService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<LoanProductMasterDto> getByLoanProductMasterId(Integer productId) {
-		return loanProductMasterRepository.findById(productId).stream()
-				.filter(o-> !Boolean.TRUE.equals(o.getIsDeleted()) && 
-						Boolean.TRUE.equals(o.getIsActive()))
-				.map(this::toDto)
-				.collect(Collectors.toList());
+	public LoanProductMasterDto getByLoanProductMasterId(Integer productId) {
+		LoanProductMaster entity = loanProductMasterRepository.findById(productId)
+				.filter(e -> !Boolean.TRUE.equals(e.getIsDeleted()) && Boolean.TRUE.equals(e.getIsActive()))
+				.orElseThrow(() -> new BusinessException("Loan product master not found with id :"+productId));
+		return toDto(entity);
 	}
 
 	@Transactional(readOnly = true)
