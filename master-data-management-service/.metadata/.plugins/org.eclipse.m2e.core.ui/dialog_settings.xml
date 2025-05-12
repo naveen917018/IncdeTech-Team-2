@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\intelmani"/>
 			<item value="D:\intelmani\IncdeTech-Team-2\master-data-management-service"/>
 		</list>
 		<list key="projectNameTemplate">

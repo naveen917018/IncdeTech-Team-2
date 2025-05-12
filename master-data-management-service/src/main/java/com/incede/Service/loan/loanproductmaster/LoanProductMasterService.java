@@ -56,8 +56,8 @@ public class LoanProductMasterService {
 		dto.setIsDeleted(entity.getIsDeleted() != null ? entity.getIsDeleted() : true);
 		
 		if (entity.getCreatedBy() != null) {
-			dto.setCreatedBy(dto.getCreatedBy());
-			dto.setUpdatedBy(dto.getUpdatedBy());
+			dto.setCreatedBy(entity.getCreatedBy());
+			dto.setUpdatedBy(entity.getUpdatedBy());
 		}
 
 	    return dto;
