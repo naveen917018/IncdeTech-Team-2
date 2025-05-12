@@ -2,11 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-<<<<<<< HEAD
-			<item value="D:\IndelMoney\master-data-management-service"/>
-=======
-			<item value="D:\abcd\IncdeTech-Team-2\master-data-management-service"/>
->>>>>>> 52b82d7828387a3cede2511fffbf85c2040260ec
+			<item value="D:\intelmani\IncdeTech-Team-2\master-data-management-service"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
