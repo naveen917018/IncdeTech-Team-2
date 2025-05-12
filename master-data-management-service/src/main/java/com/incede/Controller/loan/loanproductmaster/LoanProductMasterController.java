@@ -61,7 +61,7 @@ public class LoanProductMasterController {
 		return ResponseEntity.status(201).body(responce);
 	}
 	
-	@GetMapping("/{tenantId}")
+	@GetMapping("/tenant/{tenantId}")
 	public ResponseEntity<Map<String, Object>> getByTenantId(@PathVariable Integer tenantId){
 		List<LoanProductMasterDto> dto = loanProductMasterServices.getByTenantId(tenantId);
 		Map<String, Object> responce = new HashMap<>();
@@ -71,7 +71,7 @@ public class LoanProductMasterController {
 		return ResponseEntity.status(201).body(responce);
 	}
 	
-	@GetMapping("/{loanCategoryId}")
+	@GetMapping("/loanCategory/{loanCategoryId}")
 	public ResponseEntity<Map<String, Object>> getByLoanCategoryId(@PathVariable Integer loanCategoryId){
 		List<LoanProductMasterDto> dto = loanProductMasterServices.getByLoanCategoryId(loanCategoryId);
 		Map<String, Object> responce = new HashMap<>();
