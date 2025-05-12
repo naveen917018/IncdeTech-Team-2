@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.incede.master_data_management_service.MasterDataManagementServiceApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.380 s -- in com.incede.master_data_management_service.MasterDataManagementServiceApplicationTests
