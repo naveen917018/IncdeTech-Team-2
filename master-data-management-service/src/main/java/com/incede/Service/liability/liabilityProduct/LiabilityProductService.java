@@ -63,7 +63,7 @@ public class LiabilityProductService{
 	        	                
 	    }
 	    
-//	    -------------------CREATE LIABILITY PRODUCT------------------------
+//----------------------------------------CREATE LIABILITY PRODUCT-----------------------------------
 
 	    @Transactional
 	    public LiabilityProductDto createLiabilityProduct(LiabilityProductDto dto) {
@@ -95,7 +95,7 @@ public class LiabilityProductService{
 
 	    
 	    
-//	    ------------GET ALL PRODUCTS----------------------
+//-------------------------------------------------GET ALL PRODUCTS----------------------------------------------
 	    
 	    
 	    @Transactional(readOnly = true)
@@ -135,7 +135,7 @@ public class LiabilityProductService{
 
 
 	    
-//	    --------------UPDATE PRODUCT-----------------------
+//-------------------------------------UPDATE PRODUCT---------------------------------------------
 	    
 	    @Transactional
 	    public LiabilityProductDto updateLiabilityProduct(Integer id, LiabilityProductDto dto) {
@@ -174,7 +174,7 @@ public class LiabilityProductService{
 	        return toDto(liabilityproductrepository.save(existing));
 	    }
 
-//---------------DELETE PRODUCT----------------------
+//---------------------------------------------DELETE PRODUCT---------------------------------------
 	    
 	    @Transactional
 	    public void deleteProduct(Integer id) {
@@ -195,7 +195,7 @@ public class LiabilityProductService{
 	    }
 
 
-//---------------------- GET BY PRODUCT ID------------------------------
+//------------------------------------------ GET BY PRODUCT ID-----------------------------------------
 
 	    @Transactional(readOnly = true)
 	    public LiabilityProductMaster getLiabilityProductById(Integer id) {
@@ -217,7 +217,7 @@ public class LiabilityProductService{
 
 
 
-//----------------------------------GET ALL BY TENANT ID-----------------------
+//--------------------------------------------GET ALL BY TENANT ID--------------------------------------------
 	    
 	    @Transactional(readOnly = true)
 	    public List<LiabilityProductDto> getProductsByTenantId(Integer tenantId) {
@@ -249,7 +249,7 @@ public class LiabilityProductService{
 
 
 
-//-----------------------------------GET PRODUCTS BY PRODUCT CODE--------------------
+//-----------------------------------------------------GET PRODUCTS BY PRODUCT CODE-------------------------------------
 
 		public List<LiabilityProductDto> getProductsByProductCode(String productCode) {
 			 try {

@@ -40,9 +40,9 @@ public class LiabilityProductController {
     
 
     // Update existing product
-    @PutMapping("/{productId}")
-    public ResponseEntity<LiabilityProductDto> updateLiabilityProduct(@PathVariable Integer productId, @RequestBody LiabilityProductDto dto) {
-        return ResponseEntity.ok(liabilityproductservice.updateLiabilityProduct(productId, dto));
+    @PutMapping("/{id}")
+    public ResponseEntity<LiabilityProductDto> updateLiabilityProduct(@PathVariable Integer id, @RequestBody LiabilityProductDto dto) {
+        return ResponseEntity.ok(liabilityproductservice.updateLiabilityProduct(id, dto));
     }
 
 
@@ -54,7 +54,7 @@ public class LiabilityProductController {
         return ResponseEntity.ok(liabilityproductservice.getAllLiabilityProducts());
     }
 
-//     Get a product by ID
+    //Get a product by ID
     @GetMapping("/{id}")
     public ResponseEntity<LiabilityProductMaster> getLiabilityProductById(@PathVariable Integer id) {
         return ResponseEntity.ok(liabilityproductservice.getLiabilityProductById(id));
