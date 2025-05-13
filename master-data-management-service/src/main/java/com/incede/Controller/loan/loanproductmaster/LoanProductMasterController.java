@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incede.Dto.caratmaster.CaratMasterDTO;
 import com.incede.Dto.loan.loanproductmaster.LoanProductMasterDto;
+<<<<<<< HEAD
+=======
+
 import com.incede.Service.loan.loanpurposemaster.LoanPurposeMasterService;
+>>>>>>> origin/developer
 import com.incede.Service.loan.loanproductmaster.LoanProductMasterService;
 
 @RestController

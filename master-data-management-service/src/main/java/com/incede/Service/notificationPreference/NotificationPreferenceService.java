@@ -96,9 +96,15 @@ public class NotificationPreferenceService {
     
     @Transactional
     public NotificationPreferenceDto create(NotificationPreferenceDto dto) {
-    	if(dto.getCreatedBy() == null || !(dto.getCreatedBy() instanceof Integer)) {
-    		throw new BusinessException("Created by is Null or Not a valid datatype");
-    	}
+    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
+		}
+    	if(dto.getPreferenceType() == null) {
+			throw new BusinessException("Preference Type Must be a Not Null");
+		}
+    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+			throw new BusinessException("Tenant Id Must be a valid format");
+		}
         // CASE-INSENSITIVE duplicate check for active rows
         if (notificationPreferenceRepository.existsByTenantIdAndPreferenceTypeIgnoreCaseAndIsDeletedFalse(
                 dto.getTenantId(),
@@ -107,6 +113,9 @@ public class NotificationPreferenceService {
             throw new BusinessException("A preference of type '" +
                 dto.getPreferenceType() +
                 "' already exists for tenant " + dto.getTenantId());
+        }
+        if(dto.getCreatedBy().intValue() != dto.getUpdatedBy().intValue()) {
+        	throw new BusinessException("Created by and Updated by should be same or updated by should be null");
         }
 
         NotificationPreference saved = notificationPreferenceRepository.save(toEntity(dto));
@@ -132,6 +141,9 @@ public class NotificationPreferenceService {
     	if(dto.getUpdatedBy() == null || !(dto.getUpdatedBy() instanceof Integer)) {
     		throw new BusinessException("Updated by is Null or Not a valid datatype");
     	}
+    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
+		}
         NotificationPreference existing = notificationPreferenceRepository.findByPreferenceIdAndIsDeletedFalse(id)
             .orElseThrow(() -> new BusinessException("Preference not found with id: " + id));
 
@@ -156,6 +168,9 @@ public class NotificationPreferenceService {
 
     @Transactional
     public void delete(Integer id) {
+    	if(id == null || !(id instanceof Integer)) {
+			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
+		}
         NotificationPreference existing = notificationPreferenceRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("Preference not found with id: " + id));
         existing.setIsDeleted(true);

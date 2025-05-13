@@ -93,6 +93,7 @@ public class TaxCategoryService {
         taxCategory.setName(dto.getName());
         taxCategory.setCreatedBy(dto.getCreatedBy());
         taxCategory.setActive(dto.getActive() != null ? dto.getActive() : true);
+//        taxCategory.set
         taxCategory = taxCategoryRepository.save(taxCategory);
         return toDto(taxCategory);
     }

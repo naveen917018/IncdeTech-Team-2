@@ -19,7 +19,7 @@ import com.incede.Service.taxCategory.TaxCategoryService;
 //import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/v1/masterdata/taxcategory") 
+@RequestMapping("/v1/masterdata/taxcategories") 
 public class TaxCategoryController {
 	
 	private final TaxCategoryService service;

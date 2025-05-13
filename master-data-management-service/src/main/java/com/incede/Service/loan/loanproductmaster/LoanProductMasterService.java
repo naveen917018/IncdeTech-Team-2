@@ -131,7 +131,9 @@ public class LoanProductMasterService {
 		if(Boolean.TRUE.equals(loanProductMasterDto.getIsDeleted())) {
 			throw new BusinessException("Cannot pass isDeleted true on updation");
 		}
-		
+//		if(loanProductMasterDto.getCreatedBy() == null) {
+//			throw new BusinessException("");
+//		}
 		entity.setTenantId(loanProductMasterDto.getTenantId());
 		entity.setLoanCategoryId(loanProductMasterDto.getLoanCategoryId());
 		entity.setProductCode(loanProductMasterDto.getProductCode());

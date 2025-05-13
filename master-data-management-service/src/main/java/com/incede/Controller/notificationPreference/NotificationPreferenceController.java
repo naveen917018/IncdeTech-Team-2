@@ -17,7 +17,7 @@ import com.incede.Dto.notificationPreference.NotificationPreferenceDto;
 import com.incede.Service.notificationPreference.NotificationPreferenceService;
 
 @RestController
-@RequestMapping("/v1/masterdata/notificationpreference")
+@RequestMapping("/v1/masterdata/notificationpreferences")
 public class NotificationPreferenceController {
 	
 	private final NotificationPreferenceService notificationPreferenceService;
@@ -32,7 +32,7 @@ public class NotificationPreferenceController {
     }
     
     @GetMapping("/tenant/{tenantId}")
-    public ResponseEntity<List<NotificationPreferenceDto>> getByTenant(
+    public ResponseEntity<List<NotificationPreferenceDto>> getByTenantId(
             @PathVariable Integer tenantId) {
         List<NotificationPreferenceDto> dtos = notificationPreferenceService.getByTenantId(tenantId);
         return ResponseEntity.ok(dtos);
@@ -44,17 +44,17 @@ public class NotificationPreferenceController {
     }
 
     @PostMapping
-    public ResponseEntity<NotificationPreferenceDto> create(@RequestBody NotificationPreferenceDto dto) {
+    public ResponseEntity<NotificationPreferenceDto> createNotificationPreference(@RequestBody NotificationPreferenceDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(notificationPreferenceService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<NotificationPreferenceDto> update(@PathVariable Integer id, @RequestBody NotificationPreferenceDto dto) {
+    public ResponseEntity<NotificationPreferenceDto> updateNotificationPreference(@PathVariable Integer id, @RequestBody NotificationPreferenceDto dto) {
         return ResponseEntity.ok(notificationPreferenceService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteNotificationPreference(@PathVariable Integer id) {
     	notificationPreferenceService.delete(id);
         return ResponseEntity.noContent().build();
     }
