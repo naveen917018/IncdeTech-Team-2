@@ -67,6 +67,7 @@ public class LanguageService {
 		if(languageDto.getTenantId() == null) {
 			throw new BusinessException("Tenant Id cannot be null.");
 		}
+		  
 		
 		   // Case-insensitive duplicate check
 	    languageRepository.findByTenantIdAndLanguageNameIgnoreCase(

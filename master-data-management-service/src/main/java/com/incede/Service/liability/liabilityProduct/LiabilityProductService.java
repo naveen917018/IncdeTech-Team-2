@@ -72,22 +72,72 @@ public class LiabilityProductService{
 	            throw new BusinessException("Request body cannot be null.");
 	        }
 
-	        if (dto.getProductCode() == null || dto.getProductCode().trim().isEmpty()) {
-	            throw new BusinessException("Product code is required.");
-	        }
+	    	
+	    	
+			//	        if (dto.getProductCode() == null || dto.getProductCode().trim().isEmpty()) {
+//	            throw new BusinessException("Product code is required.");
+//	        }
+//
+//	        if (dto.getTenantId() == null) {
+//	            throw new BusinessException("Tenant ID is required.");
+//	        }
+//
+//	        if (dto.getCreatedBy() == null) {
+//	            throw new BusinessException("CreatedBy is required.");
+//	        }
+//	        
+//	        if (dto.getProductName() == null) {
+//	            throw new BusinessException("product Name is required.");
+//	        }
+//
+//	        if (dto.getProductDescription() == null) {
+//	            throw new BusinessException("product description is required.");
+//	        }
+//
+//	        if(dto.getUpdatedBy().intValue() != dto.getCreatedBy().intValue()) {
+//	        	throw new BusinessException("Updated id should be same as Created by or should be null");
+//	        	
+//	        }
+//	        if (dto.getIsActive() == null) {
+//	            throw new BusinessException("isActive field is required and must be a boolean value.");
+//	        }
+//
+//	        if (dto.getIsDeleted() == null) {
+//	            throw new BusinessException("isDeleted field is required and must be a boolean value.");
+//	        }
+	    	
 
-	        if (dto.getTenantId() == null) {
-	            throw new BusinessException("Tenant ID is required.");
-	        }
+	    	if(Boolean.FALSE.equals(dto.getIsActive())) {
+	    		throw new BusinessException("Cannot pass IsActive is FALSE on creation ");
+	    	}
+	    	
+	    
+	    	
+	    	if(Boolean.TRUE.equals(dto.getIsDeleted())) {
+	    		throw new BusinessException("Cannot pass Isdelete is TRUE on creation");
+	    	}
+	    	
+	    
+	    	
+	    	
+			// Check for existing product ID within the same tenant
+			if (dto.getProductId() != null) {
+					boolean productIdExists = liabilityproductrepository.existsByTenantIdAndProductId(dto.getTenantId(), dto.getProductId());
+					if (productIdExists) {
+						throw new BusinessException("The 'productId' already exists for this tenant.");
+					}
+			}
 
-	        if (dto.getCreatedBy() == null) {
-	            throw new BusinessException("CreatedBy is required.");
-	        }
+	        
+			//Check for existing product code within the same tenant
 
 	        boolean exists = liabilityproductrepository.existsByTenantIdAndProductCode(dto.getTenantId(), dto.getProductCode());
 	        if (exists) {
 	            throw new BusinessException("Product code already exists for this tenant.");
 	        }
+	        
+	        
+	        
 	        LiabilityProductMaster saved = toEntity(dto);
 	        liabilityproductrepository.save(saved);
 	        return toDto(saved);
