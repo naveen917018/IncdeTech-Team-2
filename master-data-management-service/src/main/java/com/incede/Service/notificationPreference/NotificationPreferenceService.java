@@ -37,7 +37,7 @@ public class NotificationPreferenceService {
         entity.setPreferenceId(dto.getPreferenceId() != null ? dto.getPreferenceId() : null);
         entity.setTenantId(dto.getTenantId());
         entity.setPreferenceType(dto.getPreferenceType());
-        entity.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
+//        entity.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
         entity.setCreatedBy(dto.getCreatedBy());
         entity.setUpdatedBy(dto.getUpdatedBy());
         return entity;
@@ -95,16 +95,19 @@ public class NotificationPreferenceService {
 //    }
     
     @Transactional
-    public NotificationPreferenceDto create(NotificationPreferenceDto dto) {
-    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
-		}
-    	if(dto.getPreferenceType() == null) {
-			throw new BusinessException("Preference Type Must be a Not Null");
-		}
-    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-			throw new BusinessException("Tenant Id Must be a valid format");
-		}
+    public NotificationPreferenceDto createNotificationPreference(NotificationPreferenceDto dto) {
+//    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+//			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
+//		}
+//    	if(dto.getPreferenceType() == null) {
+//			throw new BusinessException("Preference Type Must be a Not Null");
+//		}
+//    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+//			throw new BusinessException("Tenant Id Must be a valid format");
+//		}
+    	if(dto.getCreatedBy() == null ||!(dto.getCreatedBy() instanceof Integer)) {
+    		throw new BusinessException("Created by Must be a Not Null and in a valid format");
+    	}
         // CASE-INSENSITIVE duplicate check for active rows
         if (notificationPreferenceRepository.existsByTenantIdAndPreferenceTypeIgnoreCaseAndIsDeletedFalse(
                 dto.getTenantId(),
@@ -114,11 +117,10 @@ public class NotificationPreferenceService {
                 dto.getPreferenceType() +
                 "' already exists for tenant " + dto.getTenantId());
         }
-        if(dto.getCreatedBy().intValue() != dto.getUpdatedBy().intValue()) {
-        	throw new BusinessException("Created by and Updated by should be same or updated by should be null");
-        }
-
-        NotificationPreference saved = notificationPreferenceRepository.save(toEntity(dto));
+        NotificationPreference entity = toEntity(dto);
+        entity.setPreferenceId(null);
+        entity.setUpdatedAt(null);
+        NotificationPreference saved = notificationPreferenceRepository.save(entity);
         return toDto(saved);
     }
 
@@ -137,7 +139,7 @@ public class NotificationPreferenceService {
 //    }
     
     @Transactional
-    public NotificationPreferenceDto update(Integer id, NotificationPreferenceDto dto) {
+    public NotificationPreferenceDto updateNotificationPreference(Integer id, NotificationPreferenceDto dto) {
     	if(dto.getUpdatedBy() == null || !(dto.getUpdatedBy() instanceof Integer)) {
     		throw new BusinessException("Updated by is Null or Not a valid datatype");
     	}
@@ -167,7 +169,7 @@ public class NotificationPreferenceService {
     }
 
     @Transactional
-    public void delete(Integer id) {
+    public void deleteNotificationPreference(Integer id) {
     	if(id == null || !(id instanceof Integer)) {
 			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
 		}

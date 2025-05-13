@@ -22,11 +22,13 @@ public enum RecoveryParameter {
     }
 
     public static RecoveryParameter fromName(String name) {
+    	System.out.println(values());
         for (RecoveryParameter p : values()) {
         	System.out.println("a1");
         	System.out.println(p);
             if (p.name.equalsIgnoreCase(name)) {
             	System.out.println("a2");
+            	System.out.println(p);
                 return p;
             }
         }

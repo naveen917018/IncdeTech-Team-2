@@ -31,7 +31,7 @@ import lombok.Data;
         @Index(name = "idx_is_active", columnList = "is_active")
     }
 )
-@Check(constraints = "param_data_type IN ('string','number','boolean','date','array','object')")
+@Check(constraints = "param_data_type IN ('integer','string','number','boolean','date','array','object')")
 public class RecoveryParameterMaster extends BaseEntity{
 
     @Id

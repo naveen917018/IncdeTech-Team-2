@@ -79,9 +79,9 @@ public class TaxCategoryService {
 	
 	@Transactional
 	public TaxCategoryDto create(TaxCategoryDto dto) {
-		if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-			throw new BusinessException("Tenant Id Must be a valid format");
-		}
+//		if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+//			throw new BusinessException("Tenant Id Must be a valid format");
+//		}
 		if(dto.getCreatedBy() == null || !(dto.getCreatedBy() instanceof Integer)) {
 			throw new BusinessException("Created By not be null");
 		}
@@ -92,8 +92,7 @@ public class TaxCategoryService {
         taxCategory.setTenantId(dto.getTenantId());
         taxCategory.setName(dto.getName());
         taxCategory.setCreatedBy(dto.getCreatedBy());
-        taxCategory.setActive(dto.getActive() != null ? dto.getActive() : true);
-//        taxCategory.set
+//        taxCategory.setActive(dto.getActive() != null ? dto.getActive() : true);
         taxCategory = taxCategoryRepository.save(taxCategory);
         return toDto(taxCategory);
     }

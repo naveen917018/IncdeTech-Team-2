@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.notificationPreference.NotificationPreferenceDto;
 import com.incede.Service.notificationPreference.NotificationPreferenceService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/masterdata/notificationpreferences")
 public class NotificationPreferenceController {
@@ -44,18 +46,18 @@ public class NotificationPreferenceController {
     }
 
     @PostMapping
-    public ResponseEntity<NotificationPreferenceDto> createNotificationPreference(@RequestBody NotificationPreferenceDto dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(notificationPreferenceService.create(dto));
+    public ResponseEntity<NotificationPreferenceDto> createNotificationPreference(@Valid @RequestBody NotificationPreferenceDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(notificationPreferenceService.createNotificationPreference(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<NotificationPreferenceDto> updateNotificationPreference(@PathVariable Integer id, @RequestBody NotificationPreferenceDto dto) {
-        return ResponseEntity.ok(notificationPreferenceService.update(id, dto));
+        return ResponseEntity.ok(notificationPreferenceService.updateNotificationPreference(id, dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNotificationPreference(@PathVariable Integer id) {
-    	notificationPreferenceService.delete(id);
+    	notificationPreferenceService.deleteNotificationPreference(id);
         return ResponseEntity.noContent().build();
     }
 
