@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incede.Dto.loan.loanproductmaster.LoanProductMasterDto;
+<<<<<<< HEAD
+=======
+
+import com.incede.Service.loan.loanpurposemaster.LoanPurposeMasterService;
+>>>>>>> origin/developer
 import com.incede.Service.loan.loanproductmaster.LoanProductMasterService;
 
 @RestController
@@ -50,7 +56,7 @@ public class LoanProductMasterController {
 	
 	@GetMapping("/{productId}")
 	public ResponseEntity<Map<String, Object>> getByLoanProductMasterId(@PathVariable Integer productId){
-		List<LoanProductMasterDto> dto = loanProductMasterServices.getByLoanProductMasterId(productId);
+		LoanProductMasterDto dto = loanProductMasterServices.getByLoanProductMasterId(productId);
 		Map<String, Object> responce = new HashMap<>();
 		responce.put("Status","Success");
 		responce.put("data",dto );
@@ -58,7 +64,7 @@ public class LoanProductMasterController {
 		return ResponseEntity.status(201).body(responce);
 	}
 	
-	@GetMapping("/{tenantId}")
+	@GetMapping("/tenant/{tenantId}")
 	public ResponseEntity<Map<String, Object>> getByTenantId(@PathVariable Integer tenantId){
 		List<LoanProductMasterDto> dto = loanProductMasterServices.getByTenantId(tenantId);
 		Map<String, Object> responce = new HashMap<>();
@@ -68,7 +74,7 @@ public class LoanProductMasterController {
 		return ResponseEntity.status(201).body(responce);
 	}
 	
-	@GetMapping("/{loanCategoryId}")
+	@GetMapping("/loanCategory/{loanCategoryId}")
 	public ResponseEntity<Map<String, Object>> getByLoanCategoryId(@PathVariable Integer loanCategoryId){
 		List<LoanProductMasterDto> dto = loanProductMasterServices.getByLoanCategoryId(loanCategoryId);
 		Map<String, Object> responce = new HashMap<>();

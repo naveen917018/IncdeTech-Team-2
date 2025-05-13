@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<<<<<<< HEAD
+    <libraryInfo home="C:\Users\User\Downloads\sts-4.30.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529" version="21.0.6">
+=======
+    <libraryInfo home="C:\testMicroservice\STS\sts-4.30.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529\jre" version="21.0.6"/>
+    <libraryInfo home="C:\testMicroservice\STS\sts-4.30.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529" version="21.0.6">
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
+        <bootpath>
+            <entry path="null"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="null"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="null"/>
+        </endorsedDirs>
+    </libraryInfo>
+<<<<<<< HEAD
+    <libraryInfo home="C:\Users\User\Downloads\sts-4.30.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529\jre" version="21.0.6"/>
+=======
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
+    <libraryInfo home="C:\Program Files\Java\jdk-21" version="21.0.7"/>
+</libraryInfos>

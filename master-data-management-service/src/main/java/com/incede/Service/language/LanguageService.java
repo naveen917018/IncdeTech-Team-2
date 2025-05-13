@@ -3,6 +3,7 @@ package com.incede.Service.language;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,8 +34,8 @@ public class LanguageService {
 		if (languageDto.getCreatedBy() != null) {
 			language.setCreatedBy(languageDto.getCreatedBy());
 		}
-		if (languageDto.getCreatedBy() != null) {
-			language.setUpdatedBy(languageDto.getCreatedBy());
+		if (languageDto.getUpdatedBy() != null) {
+			language.setUpdatedBy(languageDto.getUpdatedBy());
 		}
 		
 		return language;
@@ -77,8 +78,12 @@ public class LanguageService {
 
 		Language language = toEntity(languageDto);
 		language.setLanguageId(null);
-		language = languageRepository.save(language);
-		
+		try {
+	        language = languageRepository.save(language);
+	    } catch (DataIntegrityViolationException e) {
+	        // This exception is thrown when a unique constraint is violated
+	        throw new BusinessException("Language already exists for this tenant.");
+	    }
 		
 		return toDto(language);
 	}
