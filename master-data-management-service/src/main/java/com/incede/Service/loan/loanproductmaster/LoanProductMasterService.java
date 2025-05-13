@@ -33,7 +33,7 @@ public class LoanProductMasterService {
 	    entity.setUUID(dto.getUUID());
 	    
 	    entity.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
-	    entity.setIsDeleted(dto.getIsDeleted() != null ? dto.getIsDeleted() : true);
+	    entity.setIsDeleted(dto.getIsDeleted() != null ? dto.getIsDeleted() : false);
 		
 		if (dto.getCreatedBy() != null) {
 			entity.setCreatedBy(dto.getCreatedBy());
@@ -70,6 +70,12 @@ public class LoanProductMasterService {
 		boolean exists_productCode = loanProductMasterRepository.existsByTenantIdAndProductCode(loanProductMasterDTO.getTenantId(),loanProductMasterDTO.getProductCode());
 		if(exists && exists_productCode) {
 			throw new BusinessException("Duplicate Loan Name or code for this tenant is not allowed");
+		}
+		if(loanProductMasterDTO.getCreatedBy() == null) {
+			throw new BusinessException("Created By cannot be null");
+		}
+		if(Boolean.TRUE.equals(loanProductMasterDTO.getIsDeleted())) {
+			throw new BusinessException("Cannot pass isDeleted true on creation");
 		}
 		LoanProductMaster entity = toEntity(loanProductMasterDTO);
 		entity.setProductId(null);
@@ -121,6 +127,9 @@ public class LoanProductMasterService {
 		if(!entity.getProductCode().equalsIgnoreCase(loanProductMasterDto.getProductCode()) && !entity.getProductName().equalsIgnoreCase(loanProductMasterDto.getProductName())) {
 			throw new BusinessException("Duplicate Product name and code for this tenant is not allowed");
 			 
+		}
+		if(Boolean.TRUE.equals(loanProductMasterDto.getIsDeleted())) {
+			throw new BusinessException("Cannot pass isDeleted true on updation");
 		}
 		
 		entity.setTenantId(loanProductMasterDto.getTenantId());

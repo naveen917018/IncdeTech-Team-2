@@ -116,7 +116,7 @@ public class CaratMasterServices {
 		entity.setCaratValue(caratMasterDTO.getCaratValue());
 		entity.setPurityPercentage(caratMasterDTO.getPurityPercentage());
 		entity.setIsActive(caratMasterDTO.getIsActive());
-		entity.setUpdatedBy(caratMasterDTO.getCreatedBy());
+		entity.setUpdatedBy(caratMasterDTO.getUpdatedBy());
 		
 		CaratMaster caratMaster =  caratmasterRepository.save(entity);
 		return toDTO(caratMaster);
