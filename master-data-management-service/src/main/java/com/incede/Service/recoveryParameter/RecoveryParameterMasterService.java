@@ -65,7 +65,10 @@ public class RecoveryParameterMasterService {
     public RecoveryParameterMasterDTO createParameter(RecoveryParameterMasterDTO dto) {
         RecoveryParameter paramEnum;
         try {
-        	System.out.println(1);
+//        	System.out.println(1);
+        	if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getParamName())) {
+              throw new BusinessException("Recovery Parameter already exists for this tenant.");
+        	}
             paramEnum = RecoveryParameter.fromName(dto.getParamName());
 //            System.out.println("x"+paramEnum);
         } catch (IllegalArgumentException ex) {
@@ -219,7 +222,7 @@ public class RecoveryParameterMasterService {
 
     private RecoveryParameterMaster toEntity(RecoveryParameterMasterDTO dto) {
     	RecoveryParameterMaster entity = new RecoveryParameterMaster();
-        entity.setRecoveryParamId(dto.getRecoveryParamId());
+//        entity.setRecoveryParamId(dto.getRecoveryParamId());
         entity.setParamName(dto.getParamName());
         entity.setParamValue(dto.getParamValue());
         entity.setParamDataType(dto.getParamDataType());
