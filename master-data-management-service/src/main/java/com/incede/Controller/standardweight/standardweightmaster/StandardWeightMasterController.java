@@ -1,4 +1,4 @@
-package com.incede.Controller.standardweightmaster.standardweight;
+package com.incede.Controller.standardweight.standardweightmaster;
 
 import java.util.List;
 
