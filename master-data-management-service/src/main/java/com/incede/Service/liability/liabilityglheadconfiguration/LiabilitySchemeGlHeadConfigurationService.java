@@ -11,6 +11,8 @@ import com.incede.Exception.BusinessException;
 import com.incede.Model.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfiguration;
 import com.incede.Repository.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfigurationRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class LiabilitySchemeGlHeadConfigurationService {
 
@@ -27,7 +29,7 @@ public class LiabilitySchemeGlHeadConfigurationService {
 		dto.setGlAccountType(entity.getGlAccountType());
 		dto.setGlConfigId(entity.getGlConfigId());
 		dto.setSchemeId(entity.getSchemeId());
-		dto.setIsDeleted(entity.getIsDeleted());
+		dto.setIsDeleted(entity.getIsDeleted() != null ? entity.getIsDeleted() : false);
 		dto.setCreatedBy(entity.getCreatedBy());
 		dto.setUpdatedBy(entity.getUpdatedBy());
 		return dto;
@@ -63,6 +65,10 @@ public class LiabilitySchemeGlHeadConfigurationService {
 	@Transactional
 	public LiabilitySchemeGlHeadConfigurationDto create(LiabilitySchemeGlHeadConfigurationDto dto) {
 		boolean exists = repository.existsByGlAccountTypeAndSchemeId(dto.getGlAccountType(), dto.getSchemeId());
+		
+		if(dto.getCreatedBy()==null) {
+			throw new BusinessException("CreatedBy cannot be null.");
+		}
 		
 		if(exists) {
 			throw new BusinessException("Duplicate GL account type for the selected scheme id");

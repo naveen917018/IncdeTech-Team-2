@@ -3,6 +3,7 @@ package com.incede.Dto.standardweight.standardweightmaster;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,14 @@ import lombok.NoArgsConstructor;
 public class StandardWeightMasterDto {
 	
 	private Integer weightId;
-	 @Column(nullable = false)
+	 @NotNull(message = "OrnamentId should not be null")
 	private Integer ornamentId;
-	 @Column(nullable = false)
+	 @NotNull(message = "StandardWeight should not be null")
 	private BigDecimal standardWeight;
-	 @Column(nullable = false)
+	 @NotNull(message = "TenantId should not be null")
 	private Integer tenantId;
 	private Boolean isActive;
-	 @Column(nullable = false)
+	 @NotNull(message = "Uuid should not be null")
 	private String uuid;
 	private Integer createdBy;
 	private Integer updatedBy;

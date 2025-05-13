@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfigurationDto;
 import com.incede.Service.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfigurationService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/masterdata/liability/glhead-configuration")
 public class LiabilitySchemeGlHeadConfigurationController {
@@ -39,7 +41,7 @@ public class LiabilitySchemeGlHeadConfigurationController {
 	
 //create
 	@PostMapping
-	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> create(@RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
+	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> create(@Valid @RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
 		LiabilitySchemeGlHeadConfigurationDto liabilityDto = service.create(dto);
 		return ResponseEntity.status(201).body(liabilityDto);
 	}
@@ -48,7 +50,7 @@ public class LiabilitySchemeGlHeadConfigurationController {
 	@PutMapping("/{id}")
 	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> update(
 			@PathVariable Integer id,
-			@RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
+			@Valid @RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
 		return ResponseEntity.ok(service.update(id, dto));
 	}
 	

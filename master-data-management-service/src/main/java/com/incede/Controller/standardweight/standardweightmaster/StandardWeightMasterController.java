@@ -31,7 +31,7 @@ public class StandardWeightMasterController {
 		return ResponseEntity.ok(standardWeights);
 	}
 	
-	@GetMapping("/getAll/{tenantId}")
+	@GetMapping("/getAllByTenantId/{tenantId}")
 	public ResponseEntity<List<StandardWeightMasterDto>> getAllStandardWeights(@PathVariable Integer tenantId){
 		List<StandardWeightMasterDto> standardWeights = standardWeightMasterService.getAllStandardWeights(tenantId);
 		return ResponseEntity.ok(standardWeights);

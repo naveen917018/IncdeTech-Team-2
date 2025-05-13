@@ -27,8 +27,8 @@ public class StandardWeightMasterService {
 		 dto.setOrnamentId(entity.getOrnamentId());
 		 dto.setWeightId(entity.getWeightId());
 		 dto.setStandardWeight(entity.getStandardWeight());
-		 dto.setIsActive(entity.getIsActive());
-		 dto.setIsDeleted(entity.getIsDeleted());
+		 dto.setIsActive(entity.getIsActive() != null ? entity.getIsActive() : true);
+		 dto.setIsDeleted(entity.getIsDeleted() != null ? entity.getIsDeleted() : false);
 		 dto.setCreatedBy(entity.getCreatedBy());
 		 dto.setUpdatedBy(entity.getUpdatedBy());
 		 dto.setUuid(entity.getUuid());
@@ -41,7 +41,7 @@ public class StandardWeightMasterService {
 		 entity.setOrnamentId(dto.getOrnamentId());
 		 entity.setWeightId(dto.getWeightId());
 		 entity.setStandardWeight(dto.getStandardWeight());
-		 entity.setIsActive(dto.getIsActive());
+		 entity.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
 		 entity.setIsDeleted(dto.getIsDeleted() != null ? dto.getIsDeleted() : false);
 		 entity.setCreatedBy(dto.getCreatedBy());
 		 entity.setUpdatedBy(dto.getUpdatedBy());

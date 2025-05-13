@@ -102,12 +102,29 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
+!SESSION 2025-05-12 09:53:26.159 -----------------------------------------------
+=======
 !SESSION 2025-05-12 09:33:09.516 -----------------------------------------------
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 eclipse.buildId=4.35.0.202504180233
 java.version=21.0.6
 java.vendor=Eclipse Adoptium
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
 Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+<<<<<<< HEAD
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -data D:\abcd\IncdeTech-Team-2\master-data-management-service
+
+!ENTRY ch.qos.logback.classic 1 0 2025-05-12 09:53:29.143
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-05-12 09:53:29.399
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.29.0 (328) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY org.eclipse.core.resources 4 567 2025-05-12 09:53:30.134
+!MESSAGE Workspace restored, but some problems occurred.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2025-05-12 09:53:30.134
+=======
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -data D:\intelmani\IncdeTech-Team-2\master-data-management-service
 
 !ENTRY ch.qos.logback.classic 1 0 2025-05-12 09:33:12.278
@@ -119,6 +136,7 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springfra
 !ENTRY org.eclipse.core.resources 4 567 2025-05-12 09:33:13.246
 !MESSAGE Workspace restored, but some problems occurred.
 !SUBENTRY 1 org.eclipse.core.resources 4 567 2025-05-12 09:33:13.246
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE Could not read metadata for '.org.eclipse.egit.core.cmp'.
 !STACK 1
 org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cmp)[567]: java.lang.Exception: The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -170,7 +188,11 @@ org.eclipse.core.internal.resources.ResourceException(/.org.eclipse.egit.core.cm
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:670)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
+<<<<<<< HEAD
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2025-05-12 09:53:30.134
+=======
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2025-05-12 09:33:13.252
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
 !STACK 0
 java.lang.Exception: The project description file (.project) for '.org.eclipse.egit.core.cmp' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
@@ -223,6 +245,15 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
 
+<<<<<<< HEAD
+!ENTRY ch.qos.logback.classic 1 0 2025-05-12 09:53:30.545
+!MESSAGE Logback config file: D:\abcd\IncdeTech-Team-2\master-data-management-service\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2025-05-12 09:53:30.978
+!MESSAGE Unable to load resource file:/D:/abcd/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/D:/abcd/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/D:/abcd/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+=======
 !ENTRY ch.qos.logback.classic 1 0 2025-05-12 09:33:13.645
 !MESSAGE Logback config file: D:\intelmani\IncdeTech-Team-2\master-data-management-service\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
 
@@ -230,6 +261,7 @@ java.lang.Exception: The project description file (.project) for '.org.eclipse.e
 !MESSAGE Unable to load resource file:/D:/intelmani/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 !STACK 0
 org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/D:/intelmani/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/D:/intelmani/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
@@ -253,7 +285,11 @@ org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException:
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:670)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
+<<<<<<< HEAD
+Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/D:/abcd/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/D:/abcd/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+=======
 Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/D:/intelmani/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/D:/intelmani/IncdeTech-Team-2/master-data-management-service/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -277,7 +313,11 @@ Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/D:/intelmani/IncdeTech-T
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
 	... 21 more
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2025-05-12 09:53:30.982
+=======
 !ENTRY org.eclipse.e4.ui.workbench 4 0 2025-05-12 09:33:14.052
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE The persisted application model has no top-level window. Reinitializing with the default application model.
 !STACK 0
 java.lang.Exception
@@ -300,6 +340,19 @@ java.lang.Exception
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.ui 2 0 2025-05-12 09:53:31.137
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 09:53:31.137
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2025-05-12 09:53:31.626
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 09:53:31.626
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 4 0 2025-05-12 09:53:34.135
+=======
 !ENTRY org.eclipse.ui 2 0 2025-05-12 09:33:14.163
 !MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
 !SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 09:33:14.163
@@ -311,6 +364,7 @@ java.lang.Exception
 !MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
 
 !ENTRY org.eclipse.ui 4 0 2025-05-12 09:33:16.988
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE Unable to restore working set state.
 !STACK 1
 org.eclipse.ui.WorkbenchException: The content of elements must consist of well-formed character data or markup.
@@ -433,7 +487,11 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The co
 	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
 	at org.eclipse.ui.XMLMemento.createReadRoot(XMLMemento.java:110)
 	... 101 more
+<<<<<<< HEAD
+!SUBENTRY 1 org.eclipse.ui 4 0 2025-05-12 09:53:34.137
+=======
 !SUBENTRY 1 org.eclipse.ui 4 0 2025-05-12 09:33:16.989
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE The content of elements must consist of well-formed character data or markup.
 !STACK 0
 org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
@@ -554,17 +612,30 @@ org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of el
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-05-12 09:53:35.522
+!MESSAGE No search provider was registered. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-05-12 09:53:36.533
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\User'. If this is
+=======
 !ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-05-12 09:33:18.324
 !MESSAGE No search provider was registered. Tasks search is not available.
 
 !ENTRY org.eclipse.egit.ui 2 0 2025-05-12 09:33:19.352
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.buildship.core 2 0 2025-05-12 09:53:36.886
+=======
 !ENTRY org.eclipse.buildship.core 2 0 2025-05-12 09:33:19.506
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE Could not load Gradle version information
 !STACK 0
 com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected ':' at line 2 column 10 path $[0].
@@ -594,7 +665,11 @@ See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
 	at com.google.gson.Gson.fromJson(Gson.java:1361)
 	... 8 more
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.core.jobs 4 2 2025-05-12 09:54:05.584
+=======
 !ENTRY org.eclipse.core.jobs 4 2 2025-05-12 09:35:58.493
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE An internal error occurred during: "Setting VM arguments".
 !STACK 0
 java.lang.NullPointerException: Cannot invoke "org.eclipse.core.variables.VariablesPlugin.getStringVariableManager()" because the return value of "org.eclipse.core.variables.VariablesPlugin.getDefault()" is null
@@ -606,7 +681,11 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.core.variables.Variab
 	at org.eclipse.pde.internal.core.target.TargetPlatformService$1.run(TargetPlatformService.java:478)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 
+<<<<<<< HEAD
+!ENTRY org.eclipse.pde.core 4 0 2025-05-12 09:54:05.591
+=======
 !ENTRY org.eclipse.pde.core 4 0 2025-05-12 09:35:58.498
+>>>>>>> a633538dd436920100ec14af3c66669f3eb7e909
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
@@ -679,3 +758,39 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.core.variables.Variab
 	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:244)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+!SESSION 2025-05-12 10:43:48.885 -----------------------------------------------
+eclipse.buildId=4.35.0.202504180233
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -data D:\intelmani\IncdeTech-Team-2\master-data-management-service
+
+!ENTRY ch.qos.logback.classic 1 0 2025-05-12 10:43:50.961
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-05-12 10:43:51.188
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.29.0 (328) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY ch.qos.logback.classic 1 0 2025-05-12 10:43:52.295
+!MESSAGE Logback config file: D:\intelmani\IncdeTech-Team-2\master-data-management-service\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.ui 2 0 2025-05-12 10:43:52.915
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 10:43:52.915
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2025-05-12 10:43:53.379
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 10:43:53.379
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-05-12 10:43:57.202
+!MESSAGE No search provider was registered. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-05-12 10:43:58.231
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
