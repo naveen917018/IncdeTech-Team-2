@@ -22,4 +22,6 @@ public interface RecoveryParameterRepository extends JpaRepository<RecoveryParam
 
 	Optional<RecoveryParameterMaster> findAllByIsDeletedFalse();
 
+	Optional<RecoveryParameterMaster> findByTenantIdAndParamNameIgnoreCase(Integer tenantId, String paramName);
+
 }

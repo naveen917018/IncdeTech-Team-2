@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -28,92 +29,42 @@ public class RecoveryParameterMasterService {
 		// TODO Auto-generated constructor stub
     	this.repository = repository;
 	}
-
-//    @Transactional
-//    public RecoveryParameterMasterDTO createParameter(RecoveryParameterMasterDTO dto) {
-////    	validate(dto.getParamType(), dto.getParamValue());
-////        if( !(dto.getTenantId() instanceof Integer)) {
-////			throw new BusinessException("Tenant Id Must be a valid format");
-////		}
-//		if(dto.getCreatedBy() == null || !(dto.getCreatedBy() instanceof Integer)) {
-//			throw new BusinessException("Created By not be null");
-//		}
-//		if(dto.getParamName() == null) {
-//			throw new BusinessException("Parameter Name not be null");
-//		}
-//		if(dto.getParamType() == null) {
-//			throw new BusinessException("Parameter Type not be null");
-//		}
-//		if(dto.getParamValue() == null) {
-//			throw new BusinessException("Parameter Value not be null");
-//		}
-//		if(dto.getIdentity() == null ) {
-//			throw new BusinessException("Identity not be null");
-//		}
-//        if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getParamName())) {
-//            throw new BusinessException("Recovery Parameter already exists for this tenant.");
-//        }
-//        
-//
-//        RecoveryParameterMaster entity = toEntity(dto);
-//        entity.setUpdatedBy(null);
-//        entity.setIsActive(true);
-//        return toDTO(repository.save(entity));
-//    }
     
     @Transactional
     public RecoveryParameterMasterDTO createParameter(RecoveryParameterMasterDTO dto) {
-        RecoveryParameter paramEnum;
-        try {
-//        	System.out.println(1);
-        	if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getParamName())) {
-              throw new BusinessException("Recovery Parameter already exists for this tenant.");
+        RecoveryParameter paramEnum = RecoveryParameter.fromName(dto.getParamName());
+        if(! paramEnum.getValidationType().equals(dto.getParamDataType())) {
+        	throw new BusinessException(
+                  String.format("Incompatible parameter datatype, with value")
+              );
+        }
+        ParamValueValidator.validate(dto.getParamDataType(), dto.getParamValue());
+        RecoveryParameterMaster entity = toEntity(dto);
+        Optional<RecoveryParameterMaster> recoveryParamOpt = repository.findByTenantIdAndParamNameIgnoreCase(dto.getTenantId(), dto.getParamName());
+        if(recoveryParamOpt.isPresent()) {
+        	if(recoveryParamOpt.get().getIsDeleted() == true) {
+        		entity.setRecoveryParamId(recoveryParamOpt.get().getRecoveryParamId());
+        		entity.setCreatedBy(recoveryParamOpt.get().getCreatedBy());
+        		entity.setIdentity(recoveryParamOpt.get().getIdentity());
+        		entity.setUpdatedBy(dto.getCreatedBy());
         	}
-            paramEnum = RecoveryParameter.fromName(dto.getParamName());
-//            System.out.println("x"+paramEnum);
-        } catch (IllegalArgumentException ex) {
-        	System.out.println(1.1);
-            throw new BusinessException("Unknown parameter name: " + dto.getParamName());
+        	else {
+        		throw new BusinessException("Parameter already exists for this tenant: " + dto.getParamName());
+        	}
         }
-
-        // 1) Validate paramValue format
-        try {
-        	System.out.println(2);
-            ParamValueValidator.validate(paramEnum.getValidationType(), dto.getParamValue());
-        } catch (IllegalArgumentException ex) {
-        	System.out.println(2.1);
-            throw new BusinessException(
-                String.format("Invalid value for '%s': %s", dto.getParamName(), ex.getMessage())
-            );
+        else {
+	        entity.setRecoveryParamId(null);
+	        entity.setUpdatedBy(null);
         }
-
-        // 2) Check uniqueness for this tenant + paramName
-        if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(
-                dto.getTenantId(), dto.getParamName())) {
-        	System.out.println(3);
-            throw new BusinessException("Parameter already exists for this tenant: " + dto.getParamName());
-        }
-
-        // 3) Map to entity and save
-        RecoveryParameterMaster entity = new RecoveryParameterMaster();
-        entity.setTenantId(dto.getTenantId());
-        entity.setParamName(dto.getParamName());
-        entity.setParamValue(dto.getParamValue());
-        entity.setParamDataType(dto.getParamDataType());
-        entity.setIsActive(true);
-        entity.setCreatedBy(dto.getCreatedBy());
-        entity.setIdentity(dto.getIdentity());
-        // updatedBy left null on create
-        entity = repository.save(entity);
-
-        // 4) Map back to DTO
-        dto.setRecoveryParamId(entity.getRecoveryParamId());
-        return dto;
+	    entity.setIsDeleted(false);
+		entity.setIsActive(true);
+		entity = repository.save(entity);
+	    return toDTO(entity);
     }
 
     @Transactional(readOnly = true)
     public RecoveryParameterMasterDTO getParameterById(Integer id) {
-        if (id == null) {
+        if (id == null|| !(id instanceof Integer)) {
             throw new BusinessException("Recovery Param Id must be a valid format");
         }
 
@@ -133,7 +84,7 @@ public class RecoveryParameterMasterService {
 
     @Transactional
     public RecoveryParameterMasterDTO updateParameter(RecoveryParameterMasterDTO dto) {
-    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
+    	if(!(dto.getTenantId() instanceof Integer)) {
 			throw new BusinessException("Tenant Id Must be a valid format");
 		}
     	
@@ -142,16 +93,36 @@ public class RecoveryParameterMasterService {
 		}
     
     	if(dto.getUpdatedBy() == null || !(dto.getUpdatedBy() instanceof Integer)) {
-			throw new BusinessException("Created By not be null");
+			throw new BusinessException("Updated By not be null");
 		}
     	RecoveryParameterMaster existing = repository.findByRecoveryParamId(dto.getRecoveryParamId())
                 .orElseThrow(() -> new RuntimeException("Parameter not found"));
-
-//    	validate(dto.getParamType(), dto.getParamValue());
-        
-        if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getParamName())) {
-            throw new BusinessException("Recovery Parameter already exists for this tenant.");
+    	
+    	RecoveryParameter paramEnum;
+        try {
+//        	System.out.println(1);
+//        	if (repository.existsByTenantIdAndParamNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getParamName())) {
+//              throw new BusinessException("Recovery Parameter already exists for this tenant.");
+//        	}
+            paramEnum = RecoveryParameter.fromName(dto.getParamName());
+            System.out.println("x"+paramEnum);
+        } catch (IllegalArgumentException ex) {
+        	System.out.println(1.1);
+            throw new BusinessException("Unknown parameter name: " + dto.getParamName());
         }
+
+        // 1) Validate paramValue format
+        try {
+        	System.out.println(2 +"---"+paramEnum.getValidationType()+"-----"+ dto.getParamValue());
+            ParamValueValidator.validate(paramEnum.getValidationType(), dto.getParamValue());
+        } catch (IllegalArgumentException ex) {
+        	System.out.println(2.1);
+            throw new BusinessException(
+                String.format("Invalid value for '%s': %s", dto.getParamName(), ex.getMessage())
+            );
+        }
+        System.out.println(2.5);
+
 
         existing.setParamName(dto.getParamName());
         existing.setParamValue(dto.getParamValue());
@@ -222,7 +193,7 @@ public class RecoveryParameterMasterService {
 
     private RecoveryParameterMaster toEntity(RecoveryParameterMasterDTO dto) {
     	RecoveryParameterMaster entity = new RecoveryParameterMaster();
-//        entity.setRecoveryParamId(dto.getRecoveryParamId());
+        entity.setRecoveryParamId(dto.getRecoveryParamId());
         entity.setParamName(dto.getParamName());
         entity.setParamValue(dto.getParamValue());
         entity.setParamDataType(dto.getParamDataType());
@@ -230,7 +201,7 @@ public class RecoveryParameterMasterService {
         entity.setUpdatedBy(dto.getUpdatedBy());
         entity.setIsActive(dto.getIsActive());
         entity.setTenantId(dto.getTenantId());
-        entity.setIdentity(dto.getIdentity());
+//        entity.setIdentity(dto.getIdentity());
         return entity;
     }
 
@@ -244,7 +215,7 @@ public class RecoveryParameterMasterService {
         dto.setUpdatedBy(entity.getUpdatedBy());
         dto.setIsActive(entity.getIsActive());
         dto.setTenantId(entity.getTenantId());
-        dto.setIdentity(entity.getIdentity());
+//        dto.setIdentity(entity.getIdentity());
         return dto;
     }
 

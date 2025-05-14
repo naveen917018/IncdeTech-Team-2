@@ -27,10 +27,9 @@ public class TaxCategoryService {
 		tax.setTaxCategoryId(taxDto.getTaxCategoryId());
 		tax.setTenantId(taxDto.getTenantId());
 		tax.setName(taxDto.getName());
-//		tax.setActive(taxDto.getActive());
+		tax.setActive(taxDto.getActive());
 		tax.setCreatedBy(taxDto.getCreatedBy());
 		tax.setUpdatedBy(taxDto.getUpdatedBy());
-//		tax.setIsDeleted(taxDto.getIsDeleted());
 		return tax;
 	}
 	
@@ -79,48 +78,57 @@ public class TaxCategoryService {
 	
 	@Transactional
 	public TaxCategoryDto create(TaxCategoryDto dto) {
-		if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-			throw new BusinessException("Tenant Id Must be a valid format");
-		}
 		if(dto.getCreatedBy() == null || !(dto.getCreatedBy() instanceof Integer)) {
 			throw new BusinessException("Created By not be null");
 		}
-        if (taxCategoryRepository.existsByTenantIdAndNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getName())) {
-            throw new BusinessException("Tax category already exists for this tenant.");
-        }
-        TaxCategory taxCategory = new TaxCategory();
-        taxCategory.setTenantId(dto.getTenantId());
-        taxCategory.setName(dto.getName());
-        taxCategory.setCreatedBy(dto.getCreatedBy());
-        taxCategory.setActive(dto.getActive() != null ? dto.getActive() : true);
-//        taxCategory.set
+//        if (taxCategoryRepository.existsByTenantIdAndNameIgnoreCaseAndIsDeletedFalse(dto.getTenantId(), dto.getName())) {
+//            throw new BusinessException("Tax category already exists for this tenant.");
+//        }
+		Optional<TaxCategory> taxCategoryOpt = taxCategoryRepository.findByTenantIdAndNameIgnoreCase(dto.getTenantId(), dto.getName());
+		TaxCategory taxCategory = toEntity(dto);
+		if(taxCategoryOpt.isPresent()) {
+			if(taxCategoryOpt.get().getIsDeleted() == true) {
+				taxCategory.setTaxCategoryId(taxCategoryOpt.get().getTaxCategoryId());
+				taxCategory.setUpdatedBy(dto.getCreatedBy());
+				taxCategory.setCreatedBy(taxCategoryOpt.get().getCreatedBy());
+			}
+			else {
+				throw new BusinessException("Tax Category already exists for this tenant: " + dto.getName());
+			}
+		}
+		else {
+			taxCategory.setTaxCategoryId(null);
+			taxCategory.setUpdatedBy(null);
+		}
+        taxCategory.setActive(true);
+        taxCategory.setIsDeleted(false);
         taxCategory = taxCategoryRepository.save(taxCategory);
         return toDto(taxCategory);
     }
 	
 	@Transactional
 	public TaxCategoryDto update(TaxCategoryDto dto) {
-		System.out.println(1);
+//		System.out.println(1);
 		if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
 			throw new BusinessException("Tenant Id Must be a valid format");
 		}
-		System.out.println(2);
+//		System.out.println(2);
 		if(dto.getUpdatedBy() == null || !(dto.getUpdatedBy() instanceof Integer)) {
 			throw new BusinessException("Updated By not be null");
 		}
-		System.out.println(3);
+//		System.out.println(3);
 		TaxCategory taxCategory = taxCategoryRepository.findByTenantIdAndTaxCategoryIdAndIsDeletedFalse(dto.getTenantId(), dto.getTaxCategoryId())
                 .orElseThrow(() -> new BusinessException("Tax category not found"));
-		System.out.println(4);
+//		System.out.println(4);
 		if (taxCategoryRepository.existsByTenantIdAndNameIgnoreCaseAndIsDeletedFalse(taxCategory.getTenantId(), dto.getName())) {
             throw new BusinessException("Tax category already exists for this tenant. Dulpication is not allowed While updating");
         }
-		System.out.println(5);
+//		System.out.println(5);
 
         taxCategory.setName(dto.getName());
         taxCategory.setUpdatedBy(dto.getUpdatedBy());
         taxCategory.setActive(dto.getActive() != null ? dto.getActive() : taxCategory.getActive());
-        System.out.println(6);
+//        System.out.println(6);
         return toDto(taxCategoryRepository.save(taxCategory));
     }
 	
