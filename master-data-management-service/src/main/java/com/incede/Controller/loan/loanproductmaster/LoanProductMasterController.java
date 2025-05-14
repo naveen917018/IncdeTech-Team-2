@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incede.Dto.loan.loanproductmaster.LoanProductMasterDto;
+<<<<<<< HEAD
 
 
 import com.incede.Service.loan.loanpurposemaster.LoanPurposeMasterService;
 
+=======
+>>>>>>> github/jomol
 import com.incede.Service.loan.loanproductmaster.LoanProductMasterService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/masterdata/loan/product")
+@CrossOrigin(origins = "http://localhost:5173") // or any domain you want to allow
+
 public class LoanProductMasterController {
 
     private final LoanProductMasterService loanProductMasterServices;
@@ -34,7 +41,7 @@ public class LoanProductMasterController {
     }
     
 	@PostMapping("/")
-	public ResponseEntity<Map<String, Object>> createLoanProductMaster(@RequestBody LoanProductMasterDto loanProductMasterDTO){
+	public ResponseEntity<Map<String, Object>> createLoanProductMaster(@Valid @RequestBody LoanProductMasterDto loanProductMasterDTO){
 		LoanProductMasterDto dto = loanProductMasterServices.createLoanProductMaster(loanProductMasterDTO);
 		Map<String, Object> responce = new HashMap<>();
 		responce.put("Status","Success");
@@ -85,7 +92,7 @@ public class LoanProductMasterController {
 	
 	
 	@PutMapping("/{productId}")
-	public ResponseEntity<Map<String, Object>> updateLoanProductMaster(@PathVariable Integer productId, @RequestAttribute LoanProductMasterDto loanProductMasterDto){
+	public ResponseEntity<Map<String, Object>> updateLoanProductMaster(@PathVariable Integer productId, @RequestBody LoanProductMasterDto loanProductMasterDto){
 		LoanProductMasterDto dto = loanProductMasterServices.updateLoanProductMaster(productId,loanProductMasterDto);
 		Map<String, Object> responce = new HashMap<>();
 		responce.put("Status","Success");

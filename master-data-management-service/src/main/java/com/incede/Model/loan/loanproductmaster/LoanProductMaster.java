@@ -7,9 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
 
 
 @Data
@@ -42,5 +44,13 @@ public class LoanProductMaster extends BaseEntity{
     private Boolean isActive = true;
 
     @Column(name = "uuid", nullable = false, unique = true)
-    private String UUID;
+    private UUID UUID;
+    
+    @PrePersist
+    public void generateIdentity() {
+        if (UUID == null) {
+        	UUID = UUID.randomUUID();
+        }
+    }
+    
 }
