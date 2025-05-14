@@ -32,8 +32,7 @@ public class LoanProductMasterDto {
     
     private Boolean isActive;
     
-    @NotNull(message = "UUID should not be null")
-    private String UUID;
+    private UUID UUID;
     
     private Integer createdBy;
     private LocalDateTime createdAt;

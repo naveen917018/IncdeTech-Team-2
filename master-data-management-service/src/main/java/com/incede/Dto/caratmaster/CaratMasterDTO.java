@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class CaratMasterDTO {
     private Boolean isActive;
     
     @NotNull(message="UUID should not be null")
-    private String UUID;
+    private UUID UUID;
     
     private Integer createdBy;
     private Integer updatedBy;

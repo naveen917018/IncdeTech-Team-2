@@ -19,6 +19,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
+import java.util.*;
 
 @Data
 @Entity
@@ -58,6 +59,6 @@ public class CaratMaster extends BaseEntity{
 	    private Boolean isActive = true;
 
 	    @Column(name = "uuid", nullable = false, unique = true)
-	    private String UUID;
+	    private UUID UUID;
 
 }

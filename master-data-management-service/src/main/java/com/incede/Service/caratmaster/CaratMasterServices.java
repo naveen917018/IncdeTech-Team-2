@@ -114,6 +114,12 @@ public class CaratMasterServices {
 				throw new BusinessException("Duplicate carat value for this tenant is not allowed");
 			}
 		}
+		if(caratMasterDTO.getCreatedBy() != null) {
+			throw new BusinessException("No need to give 'createdBy' on updation");
+		}
+		if(caratMasterDTO.getUpdatedBy() == null) {
+			throw new BusinessException("Cannot update this without 'updatedBy'");
+		}
 		entity.setTenantId(caratMasterDTO.getTenantId());
 		entity.setCaratValue(caratMasterDTO.getCaratValue());
 		entity.setPurityPercentage(caratMasterDTO.getPurityPercentage());
