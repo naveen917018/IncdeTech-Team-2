@@ -1,6 +1,7 @@
 package com.incede.Service.notificationPreference;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class NotificationPreferenceService {
         entity.setPreferenceId(dto.getPreferenceId() != null ? dto.getPreferenceId() : null);
         entity.setTenantId(dto.getTenantId());
         entity.setPreferenceType(dto.getPreferenceType());
-//        entity.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
+        entity.setIsActive(dto.getIsActive() );
         entity.setCreatedBy(dto.getCreatedBy());
         entity.setUpdatedBy(dto.getUpdatedBy());
         return entity;
@@ -73,17 +74,17 @@ public class NotificationPreferenceService {
 
     @Transactional(readOnly = true)
     public NotificationPreferenceDto getById(Integer id) {
-        NotificationPreference preference = notificationPreferenceRepository.findById(id)
+        NotificationPreference preference = notificationPreferenceRepository.findByPreferenceIdAndIsDeletedFalse(id)
                 .orElseThrow(() -> new BusinessException("Preference not found with id: " + id));
         return toDto(preference);
     }
     
-    @Transactional(readOnly = true)
-    public NotificationPreferenceDto getByIdIsDeletedFalse(Integer id) {
-        NotificationPreference pref = notificationPreferenceRepository.findByPreferenceIdAndIsDeletedFalse(id)
-            .orElseThrow(() -> new BusinessException("Preference not found id=" + id));
-        return toDto(pref);
-    }
+//    @Transactional(readOnly = true)
+//    public NotificationPreferenceDto getByIdIsDeletedFalse(Integer id) {
+//        NotificationPreference pref = notificationPreferenceRepository.findByPreferenceIdAndIsDeletedFalse(id)
+//            .orElseThrow(() -> new BusinessException("Preference not found id=" + id));
+//        return toDto(pref);
+//    }
 
 //    @Transactional
 //    public NotificationPreferenceDto create(NotificationPreferenceDto dto) {
@@ -96,30 +97,38 @@ public class NotificationPreferenceService {
     
     @Transactional
     public NotificationPreferenceDto createNotificationPreference(NotificationPreferenceDto dto) {
-//    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-//			throw new BusinessException("Tenant Id Must be a Not Null and in a valid format");
-//		}
-//    	if(dto.getPreferenceType() == null) {
-//			throw new BusinessException("Preference Type Must be a Not Null");
-//		}
-//    	if(dto.getTenantId() == null || !(dto.getTenantId() instanceof Integer)) {
-//			throw new BusinessException("Tenant Id Must be a valid format");
-//		}
+    	
     	if(dto.getCreatedBy() == null ||!(dto.getCreatedBy() instanceof Integer)) {
     		throw new BusinessException("Created by Must be a Not Null and in a valid format");
     	}
-        // CASE-INSENSITIVE duplicate check for active rows
-        if (notificationPreferenceRepository.existsByTenantIdAndPreferenceTypeIgnoreCaseAndIsDeletedFalse(
-                dto.getTenantId(),
-                dto.getPreferenceType()
-        )) {
-            throw new BusinessException("A preference of type '" +
-                dto.getPreferenceType() +
-                "' already exists for tenant " + dto.getTenantId());
-        }
+//        // CASE-INSENSITIVE duplicate check for active rows
+//        if (notificationPreferenceRepository.existsByTenantIdAndPreferenceTypeIgnoreCaseAndIsDeletedFalse(
+//                dto.getTenantId(),
+//                dto.getPreferenceType()
+//        )) {
+//            throw new BusinessException("A preference of type '" +
+//                dto.getPreferenceType() +
+//                "' already exists for tenant " + dto.getTenantId());
+//        }
         NotificationPreference entity = toEntity(dto);
-        entity.setPreferenceId(null);
-        entity.setUpdatedAt(null);
+        Optional<NotificationPreference> notificationPreferenceOpt = notificationPreferenceRepository.findByTenantIdAndPreferenceTypeIgnoreCase(dto.getTenantId(),dto.getPreferenceType());
+        
+        if(notificationPreferenceOpt.isPresent()) {
+        	if(notificationPreferenceOpt.get().getIsDeleted() == true) {
+        		entity.setPreferenceId(notificationPreferenceOpt.get().getPreferenceId());
+        		entity.setUpdatedBy(dto.getCreatedBy());
+        		entity.setCreatedBy(notificationPreferenceOpt.get().getCreatedBy());
+        	}
+        	else {
+        		throw new BusinessException("Preference Type already exists for this tenant: " + dto.getPreferenceType());
+        	}
+        }
+        else {
+        	entity.setPreferenceId(null);
+        	entity.setUpdatedBy(null);
+        }
+        entity.setIsActive(true);
+        entity.setIsDeleted(false);
         NotificationPreference saved = notificationPreferenceRepository.save(entity);
         return toDto(saved);
     }

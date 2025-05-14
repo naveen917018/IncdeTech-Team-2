@@ -23,4 +23,5 @@ public interface NotificationPreferenceRepository extends JpaRepository<Notifica
     Optional<NotificationPreference> findByPreferenceIdAndIsDeletedFalse(Integer id);
     List<NotificationPreference> findAllByTenantIdAndIsDeletedFalse(Integer tenantId);
     List<NotificationPreference> findAllByIsDeletedFalse();
+	Optional<NotificationPreference> findByTenantIdAndPreferenceTypeIgnoreCase(Integer tenantId, String preferenceType);
 }

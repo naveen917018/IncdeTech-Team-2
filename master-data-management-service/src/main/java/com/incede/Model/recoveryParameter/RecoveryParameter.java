@@ -1,5 +1,7 @@
 package com.incede.Model.recoveryParameter;
 
+import com.incede.Exception.BusinessException;
+
 public enum RecoveryParameter {
     REMINDER_DAYS("Reminder Days", "integer"),
     WRITE_OFF_THRESHOLD("Write-off Threshold", "number"),
@@ -32,7 +34,7 @@ public enum RecoveryParameter {
                 return p;
             }
         }
-        throw new IllegalArgumentException("Unknown parameter name: " + name);
+        throw new BusinessException("Unknown parameter name: " + name);
     }
 }
 

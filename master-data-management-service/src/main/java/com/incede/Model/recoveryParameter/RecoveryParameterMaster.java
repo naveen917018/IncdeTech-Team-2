@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
@@ -54,6 +55,15 @@ public class RecoveryParameterMaster extends BaseEntity{
     @Column(name = "is_active")
     private Boolean isActive = true;
 
-    @Column(name = "identity", nullable = false, unique = true)
-    private String identity;
+    @Column(name = "identity",nullable = false, unique = true)
+    private UUID identity;
+    
+    
+    @PrePersist
+    public void generateIdentity() {
+        if (identity == null) {
+            identity = UUID.randomUUID();
+        }
+    }
+
 }

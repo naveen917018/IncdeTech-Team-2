@@ -29,4 +29,7 @@ public interface TaxCategoryRepository extends JpaRepository<TaxCategory, Intege
 	        String name
 	    );
 
+
+	Optional<TaxCategory> findByTenantIdAndNameIgnoreCase(Integer tenantId, String name);
+
 }

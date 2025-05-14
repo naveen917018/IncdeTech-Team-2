@@ -30,8 +30,8 @@ public class RecoveryParameterMasterDTO {
     private String paramDataType;  // must be one of "Reminder Days", "Write-off Threshold", "Recovery Escalation Rule"
 
     private Boolean isActive;
-    @NotNull(message = "identity cannot be null")
-    private String identity;
+//    @NotNull(message = "identity cannot be null")
+//    private UUID identity;
     private Integer createdBy;
     private Integer updatedBy;
 }
