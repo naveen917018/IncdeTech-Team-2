@@ -1,6 +1,7 @@
 package com.incede.Dto.standardweight.standardweightmaster;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
@@ -21,9 +22,9 @@ public class StandardWeightMasterDto {
 	 @NotNull(message = "TenantId should not be null")
 	private Integer tenantId;
 	private Boolean isActive;
-	 @NotNull(message = "Uuid should not be null")
-	private String uuid;
+	private UUID uuid;
 	private Integer createdBy;
 	private Integer updatedBy;
 	private Boolean isDeleted;
+	
 }

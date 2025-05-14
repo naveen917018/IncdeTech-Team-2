@@ -1,6 +1,7 @@
 package com.incede.Model.standardweight.standardweightmaster;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import com.incede.Model.baseentity.BaseEntity;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
@@ -42,5 +44,12 @@ public class StandardWeightMaster extends BaseEntity{
 	private Boolean isActive = true;
 	
 	@Column(name = "uuid", nullable = false, unique = true)
-	private String uuid;
+	private UUID uuid;
+	
+	@PrePersist
+    public void generateIdentity() {
+        if (uuid == null) {
+        	uuid = UUID.randomUUID();
+        }
+    }
 }

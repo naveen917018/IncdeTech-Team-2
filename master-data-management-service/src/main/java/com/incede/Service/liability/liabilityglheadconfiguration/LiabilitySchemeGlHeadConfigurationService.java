@@ -104,6 +104,10 @@ public class LiabilitySchemeGlHeadConfigurationService {
 			throw new BusinessException("No need to pass createdBy while updating");
 		}
 		
+		if(dto.getUpdatedBy()==null) {
+			throw new BusinessException("Please provide updatedBy.");
+		}
+		
 		existing.setGlAccountId(dto.getGlAccountId());
 		existing.setGlAccountType(dto.getGlAccountType());
 		existing.setSchemeId(dto.getSchemeId());

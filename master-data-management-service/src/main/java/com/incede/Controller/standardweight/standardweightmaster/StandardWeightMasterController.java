@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.standardweight.standardweightmaster.StandardWeightMasterDto;
 import com.incede.Service.standardweight.standardweightmaster.StandardWeightMasterService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/masterdata/standardweight/standardweightmaster")
 public class StandardWeightMasterController {
@@ -43,14 +45,14 @@ public class StandardWeightMasterController {
 	}
 	
 	@PostMapping("/")
-	public  ResponseEntity<StandardWeightMasterDto> createStandardWeight(@RequestBody StandardWeightMasterDto dto){
+	public  ResponseEntity<StandardWeightMasterDto> createStandardWeight(@Valid @RequestBody StandardWeightMasterDto dto){
 		StandardWeightMasterDto standardWeightDto = standardWeightMasterService.createStandardWeight(dto);
 		return ResponseEntity.status(201).body(standardWeightDto);
 	}
 	
 	@PutMapping("/{id}")
 	public  ResponseEntity<StandardWeightMasterDto> updateStandardWeight(
-			@PathVariable Integer id, @RequestBody StandardWeightMasterDto  dto){
+			@PathVariable Integer id, @Valid @RequestBody StandardWeightMasterDto  dto){
 		StandardWeightMasterDto updatedStandardWeightDto = standardWeightMasterService.updateStandardWeight(id, dto);
 		return ResponseEntity.ok(updatedStandardWeightDto);
 	}
