@@ -3,7 +3,6 @@ package com.incede.Dto.standardweight.standardweightmaster;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
