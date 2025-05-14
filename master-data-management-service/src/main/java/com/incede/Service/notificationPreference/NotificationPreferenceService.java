@@ -101,15 +101,6 @@ public class NotificationPreferenceService {
     	if(dto.getCreatedBy() == null ||!(dto.getCreatedBy() instanceof Integer)) {
     		throw new BusinessException("Created by Must be a Not Null and in a valid format");
     	}
-//        // CASE-INSENSITIVE duplicate check for active rows
-//        if (notificationPreferenceRepository.existsByTenantIdAndPreferenceTypeIgnoreCaseAndIsDeletedFalse(
-//                dto.getTenantId(),
-//                dto.getPreferenceType()
-//        )) {
-//            throw new BusinessException("A preference of type '" +
-//                dto.getPreferenceType() +
-//                "' already exists for tenant " + dto.getTenantId());
-//        }
         NotificationPreference entity = toEntity(dto);
         Optional<NotificationPreference> notificationPreferenceOpt = notificationPreferenceRepository.findByTenantIdAndPreferenceTypeIgnoreCase(dto.getTenantId(),dto.getPreferenceType());
         
