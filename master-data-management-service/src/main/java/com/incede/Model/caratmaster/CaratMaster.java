@@ -33,7 +33,6 @@ import lombok.Data;
 		    @Index(name = "idx_is_active", columnList = "is_active")
 		}
 )
-@Check(constraints = "purity_percentage > 0 AND purity_percentage <= 100")
 
 public class CaratMaster extends BaseEntity{
 

@@ -24,10 +24,12 @@ public class CaratMasterDTO {
     
     @NotNull(message="Purity Percentage should not be null")
     private BigDecimal purityPercentage;
+    
     private Boolean isActive;
     
     @NotNull(message="UUID should not be null")
     private String UUID;
+    
     private Integer createdBy;
     private Integer updatedBy;
     private Boolean isDeleted;

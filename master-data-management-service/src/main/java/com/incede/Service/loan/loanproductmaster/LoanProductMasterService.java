@@ -54,13 +54,12 @@ public class LoanProductMasterService {
 		dto.setUUID(entity.getUUID());
 	    
 		dto.setIsActive(entity.getIsActive() != null ? entity.getIsActive() : true);
-		dto.setIsDeleted(entity.getIsDeleted() != null ? entity.getIsDeleted() : true);
+		dto.setIsDeleted(entity.getIsDeleted() != null ? entity.getIsDeleted() : false);
 		
 		if (entity.getCreatedBy() != null) {
 			dto.setCreatedBy(entity.getCreatedBy());
 			dto.setUpdatedBy(entity.getUpdatedBy());
 		}
-
 	    return dto;
 	}
 	
@@ -131,9 +130,9 @@ public class LoanProductMasterService {
 		if(Boolean.TRUE.equals(loanProductMasterDto.getIsDeleted())) {
 			throw new BusinessException("Cannot pass isDeleted true on updation");
 		}
-//		if(loanProductMasterDto.getCreatedBy() == null) {
-//			throw new BusinessException("");
-//		}
+		if(loanProductMasterDto.getCreatedBy() == null) {
+			throw new BusinessException("Cannot give 'createdBy' on update");
+		}
 		entity.setTenantId(loanProductMasterDto.getTenantId());
 		entity.setLoanCategoryId(loanProductMasterDto.getLoanCategoryId());
 		entity.setProductCode(loanProductMasterDto.getProductCode());
@@ -151,8 +150,5 @@ public class LoanProductMasterService {
 				.orElseThrow(()-> new BusinessException("Cannot delete. Loan Product not found with id: "+productId));
 		loanProductMaster.setIsDeleted(true);
 		loanProductMasterRepository.save(loanProductMaster);
-	}
-	
-	
-	
+	}	
 }

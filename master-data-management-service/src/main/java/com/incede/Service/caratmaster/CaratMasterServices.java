@@ -12,6 +12,8 @@ import com.incede.Exception.BusinessException;
 import com.incede.Model.caratmaster.CaratMaster;
 import com.incede.Repository.caratmaster.CaratMasterRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class CaratMasterServices {
 	
