@@ -7,7 +7,8 @@ import com.incede.Enum.GLAccountType;
 import com.incede.Model.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfiguration;
 
 @Repository
-public interface LiabilitySchemeGlHeadConfigurationRepository extends JpaRepository<LiabilitySchemeGlHeadConfiguration, Integer>{
+public interface LiabilitySchemeGlHeadConfigurationRepository
+		extends JpaRepository<LiabilitySchemeGlHeadConfiguration, Integer> {
 
 	boolean existsByGlAccountTypeAndSchemeId(GLAccountType glAccountType, Integer schemeId);
 
