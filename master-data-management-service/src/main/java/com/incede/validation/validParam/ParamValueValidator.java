@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.incede.Exception.BusinessException;
 
 public class ParamValueValidator {
 
@@ -24,7 +25,7 @@ public class ParamValueValidator {
 
             case "integer":
                 if (!value.matches("\\d+")) {
-                    throw new IllegalArgumentException("Value must be a whole integer");
+                    throw new BusinessException("Value must be a whole integer");
                 }
                 break;
 
@@ -32,7 +33,7 @@ public class ParamValueValidator {
                 try {
                     new BigDecimal(value);
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Value must be numeric (decimal allowed)");
+                    throw new BusinessException("Value must be numeric (decimal allowed)");
                 }
                 break;
 
@@ -73,7 +74,7 @@ public class ParamValueValidator {
                 break;
 
             default:
-                throw new IllegalArgumentException("Unsupported data type: " + dataType);
+                throw new BusinessException("Unsupported data type: " + dataType);
         }
     }
 }

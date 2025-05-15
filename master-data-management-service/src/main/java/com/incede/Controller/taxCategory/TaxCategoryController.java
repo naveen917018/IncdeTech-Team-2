@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.taxCategory.TaxCategoryDto;
 import com.incede.Service.taxCategory.TaxCategoryService;
 
+import jakarta.validation.Valid;
+
 //import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -30,7 +32,7 @@ public class TaxCategoryController {
 	}
 	
     @PostMapping
-    public ResponseEntity<TaxCategoryDto> create(@RequestBody TaxCategoryDto dto) {
+    public ResponseEntity<TaxCategoryDto> create(@Valid @RequestBody TaxCategoryDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.CREATED);
     }
 

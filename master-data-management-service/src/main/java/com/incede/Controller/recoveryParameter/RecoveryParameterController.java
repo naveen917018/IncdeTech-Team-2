@@ -52,7 +52,7 @@ public class RecoveryParameterController {
     }
 
     @PutMapping
-    public ResponseEntity<RecoveryParameterMasterDTO> update( @RequestBody RecoveryParameterMasterDTO dto) {
+    public ResponseEntity<RecoveryParameterMasterDTO> update(@Valid @RequestBody RecoveryParameterMasterDTO dto) {
         return ResponseEntity.ok(service.updateParameter(dto));
     }
 

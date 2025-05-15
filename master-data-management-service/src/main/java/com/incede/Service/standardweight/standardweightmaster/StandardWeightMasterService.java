@@ -42,7 +42,7 @@ public class StandardWeightMasterService {
 		 entity.setWeightId(dto.getWeightId());
 		 entity.setStandardWeight(dto.getStandardWeight());
 		 entity.setIsActive(dto.getIsActive());
-		 entity.setIsDeleted(dto.getIsDeleted());
+		 entity.setIsDeleted(dto.getIsDeleted() != null ? dto.getIsDeleted() : false);
 		 entity.setCreatedBy(dto.getCreatedBy());
 		 entity.setUpdatedBy(dto.getUpdatedBy());
 		 entity.setUuid(dto.getUuid());
@@ -90,6 +90,14 @@ public class StandardWeightMasterService {
 			 throw new BusinessException("Duplicate standard weight for this ornament not allowed");
 		 }
 		 
+		 if(dto.getIsActive() != true) {
+			 throw new BusinessException("IsActive should be set true while creating.");
+		 }
+		 
+		 if (Boolean.TRUE.equals(dto.getIsDeleted())) {
+			    throw new BusinessException("Cannot create entity with isDeleted = true.");
+			}
+		 
 		 StandardWeightMaster standardWeight = toEntity(dto);
 		  repository.save(standardWeight);
 		  
@@ -109,6 +117,14 @@ public class StandardWeightMasterService {
 				 throw new BusinessException("Duplicate standard weight for this ornament not allowed.");
 			 }
 		 }
+		 
+		 if (Boolean.TRUE.equals(dto.getIsDeleted())) {
+			    throw new BusinessException("Cannot update with isDeleted = true.");
+			}
+		 
+		 if(dto.getCreatedBy()!=null) {
+				throw new BusinessException("No need to pass createdBy while updating");
+			}
 		 
 		 existing.setTenantId(dto.getTenantId());
 		 existing.setStandardWeight(dto.getStandardWeight());

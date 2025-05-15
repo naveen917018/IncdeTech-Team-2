@@ -1,5 +1,7 @@
 package com.incede.Model.recoveryParameter;
 
+import com.incede.Exception.BusinessException;
+
 public enum RecoveryParameter {
     REMINDER_DAYS("Reminder Days", "integer"),
     WRITE_OFF_THRESHOLD("Write-off Threshold", "number"),
@@ -22,15 +24,17 @@ public enum RecoveryParameter {
     }
 
     public static RecoveryParameter fromName(String name) {
+    	System.out.println(values());
         for (RecoveryParameter p : values()) {
         	System.out.println("a1");
         	System.out.println(p);
             if (p.name.equalsIgnoreCase(name)) {
             	System.out.println("a2");
+            	System.out.println(p);
                 return p;
             }
         }
-        throw new IllegalArgumentException("Unknown parameter name: " + name);
+        throw new BusinessException("Unknown parameter name: " + name);
     }
 }
 
