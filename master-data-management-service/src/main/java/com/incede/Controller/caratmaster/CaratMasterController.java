@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.caratmaster.CaratMasterDTO;
 import com.incede.Service.caratmaster.CaratMasterServices;
 
-@RestController
+import jakarta.validation.Valid;
+
+@RestController 
 @RequestMapping("/v1/masterdata/caratmaster")
 public class CaratMasterController {
 
@@ -28,7 +30,7 @@ public class CaratMasterController {
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Map<String, Object>> createCartMaster(@RequestBody CaratMasterDTO caratMasterDTO){
+	public ResponseEntity<Map<String, Object>> createCartMaster(@Valid @RequestBody CaratMasterDTO caratMasterDTO){
 		System.out.println(caratMasterDTO);
 		CaratMasterDTO dto = caratMasterServices.createCaratMaster(caratMasterDTO);
 		Map<String, Object> responce = new HashMap<>();

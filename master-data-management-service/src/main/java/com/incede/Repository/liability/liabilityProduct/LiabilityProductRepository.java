@@ -21,5 +21,7 @@ public interface LiabilityProductRepository  extends JpaRepository<LiabilityProd
 
     List<LiabilityProductMaster> findByProductCode(String productCode); // <-- Add this
 
+	boolean existsByTenantIdAndProductId(Integer tenantId, Integer productId);
+
 
 }

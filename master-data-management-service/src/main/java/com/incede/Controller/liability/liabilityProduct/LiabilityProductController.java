@@ -17,6 +17,8 @@ import com.incede.Dto.liability.liabilityProduct.LiabilityProductDto;
 import com.incede.Model.liability.liabilityProductMaster.LiabilityProductMaster;
 import com.incede.Service.liability.liabilityProduct.LiabilityProductService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/v1/masterdata/liability/product-master")
@@ -33,7 +35,7 @@ public class LiabilityProductController {
     
     // Create a new product
     @PostMapping
-    public ResponseEntity<LiabilityProductDto> createLiabilityProduct(@RequestBody LiabilityProductDto dto) {
+    public ResponseEntity<LiabilityProductDto> createLiabilityProduct(@Valid @RequestBody LiabilityProductDto dto) {
         return ResponseEntity.status(201).body(liabilityproductservice.createLiabilityProduct(dto));
     }
 

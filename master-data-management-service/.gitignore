@@ -12,7 +12,11 @@ target/
 .settings
 .springBeans
 .sts4-cache
+<<<<<<< HEAD
+.yml
+=======
 **/application.yml
+>>>>>>> github/aban
 
 ### IntelliJ IDEA ###
 .idea

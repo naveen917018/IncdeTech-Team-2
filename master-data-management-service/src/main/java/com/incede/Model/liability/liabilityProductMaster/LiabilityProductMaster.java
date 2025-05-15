@@ -31,7 +31,7 @@ public class LiabilityProductMaster extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "product_id",nullable = false)
     private Integer productId;
 
     @Column(name = "tenant_id", nullable = false)
