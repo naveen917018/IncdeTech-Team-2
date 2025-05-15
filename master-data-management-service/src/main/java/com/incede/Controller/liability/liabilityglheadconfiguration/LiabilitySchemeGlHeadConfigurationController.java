@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.incede.Dto.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfigurationDto;
 import com.incede.Service.liability.liabilityglheadconfiguration.LiabilitySchemeGlHeadConfigurationService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/masterdata/liability/glhead-configuration")
 public class LiabilitySchemeGlHeadConfigurationController {
@@ -31,33 +33,44 @@ public class LiabilitySchemeGlHeadConfigurationController {
 		return ResponseEntity.ok(service.getAll());
 	}
 
+	private final LiabilitySchemeGlHeadConfigurationService service;
+
+	public LiabilitySchemeGlHeadConfigurationController(LiabilitySchemeGlHeadConfigurationService service) {
+		this.service = service;
+	}
+
+//get all
+	@GetMapping
+	public ResponseEntity<List<LiabilitySchemeGlHeadConfigurationDto>> getAll() {
+		return ResponseEntity.ok(service.getAll());
+	}
+
 //get by id
 	@GetMapping("/{id}")
 	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> getById(@PathVariable Integer id) {
 		return ResponseEntity.ok(service.getById(id));
 	}
-	
+
 //create
 	@PostMapping
-	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> create(@RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
+	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> create(
+			@Valid @RequestBody LiabilitySchemeGlHeadConfigurationDto dto) {
 		LiabilitySchemeGlHeadConfigurationDto liabilityDto = service.create(dto);
 		return ResponseEntity.status(201).body(liabilityDto);
 	}
-	
+
 //update
 	@PutMapping("/{id}")
-	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> update(
-			@PathVariable Integer id,
-			@RequestBody LiabilitySchemeGlHeadConfigurationDto dto){
+	public ResponseEntity<LiabilitySchemeGlHeadConfigurationDto> update(@PathVariable Integer id,
+			@Valid @RequestBody LiabilitySchemeGlHeadConfigurationDto dto) {
 		return ResponseEntity.ok(service.update(id, dto));
 	}
-	
+
 //delete
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> delete(@PathVariable Integer id){
+	public ResponseEntity<String> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.ok("Configuration deleted successfully");
 	}
-	
-	
+
 }
