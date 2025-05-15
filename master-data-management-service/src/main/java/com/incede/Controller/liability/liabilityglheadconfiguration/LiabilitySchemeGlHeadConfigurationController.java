@@ -20,18 +20,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/v1/masterdata/liability/glhead-configuration")
 public class LiabilitySchemeGlHeadConfigurationController {
-	
-	private final LiabilitySchemeGlHeadConfigurationService service;
-	
-	public LiabilitySchemeGlHeadConfigurationController(LiabilitySchemeGlHeadConfigurationService service) {
-		this.service = service;
-	}
-	
-//get all
-	@GetMapping
-	public ResponseEntity<List<LiabilitySchemeGlHeadConfigurationDto>> getAll(){
-		return ResponseEntity.ok(service.getAll());
-	}
 
 	private final LiabilitySchemeGlHeadConfigurationService service;
 
