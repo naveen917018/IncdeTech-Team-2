@@ -21,7 +21,7 @@ import lombok.Data;
 public class TaxCategory extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "tax_cat_id")
     private Integer taxCategoryId;
 

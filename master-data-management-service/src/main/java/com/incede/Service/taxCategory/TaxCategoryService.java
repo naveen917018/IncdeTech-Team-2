@@ -55,7 +55,13 @@ public class TaxCategoryService {
 		}
         TaxCategory taxCategory = taxCategoryRepository.findByTenantIdAndTaxCategoryIdAndIsDeletedFalse(tenantId, id)
                 .orElseThrow(() -> new BusinessException("Tax category not found"));
-        return toDto(taxCategory);
+        ////////////////////////////////////////////////////ij8iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+        ////////////////qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+        return toDto(taxCategory); 
+        ////111111111111111111111
+        ///222222222222222222222222
+        ///333333333333333333333333
+        
     }
 	
 	@Transactional(readOnly = true)
