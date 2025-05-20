@@ -20,6 +20,7 @@ private final AddressTypeService addressTypeService;
 		this.addressTypeService = addressTypeService;
 	}
 
+	
 	// Get all address types
 	@GetMapping("/getAll-")
 	public ResponseEntity<List<AddressTypeDto>> getAllAddressTypes() {
