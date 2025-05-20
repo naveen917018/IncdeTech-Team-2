@@ -78,7 +78,7 @@ public class LoanProductMasterService {
 		entity.setProductId(null);
 		loanProductMasterRepository.save(entity);
 		return toDto(entity);
-	}
+	} 
 
 	@Transactional(readOnly = true)
 	public List<LoanProductMasterDto> getAllLoanProductMasters() {

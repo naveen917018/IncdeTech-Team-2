@@ -58,6 +58,8 @@ public class LoanProductMasterController {
 		return ResponseEntity.status(201).body(responce);
 	}
 	
+	
+	
 	@GetMapping("/{productId}")
 	public ResponseEntity<Map<String, Object>> getByLoanProductMasterId(@PathVariable Integer productId){
 		LoanProductMasterDto dto = loanProductMasterServices.getByLoanProductMasterId(productId);
